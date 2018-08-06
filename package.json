@@ -1,0 +1,19 @@
+{
+  "name": "card",
+  "version": "1.0.0",
+  "description": "abc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ObadaSTU/Card.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ObadaSTU/Card/issues"
+  },
+  "homepage": "https://github.com/ObadaSTU/Card#readme"
+}
