@@ -7,5 +7,5 @@ app.use('/', function(req, res){
 })
 
 app.listen(8080, function(){
-    
+    console.log('8080')
 })
