@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+
+<body ng-app="myApp">
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when("/", {
+                    templateUrl: "login.html"
+                })
+                .when("/register", {
+                    templateUrl: "register.html"
+                })
+                .when("/feedback", {
+                    templateUrl: "feedback.html"
+                })
+                .when("/card", {
+                    templateUrl: "card.html"
+                })
+                
+        });
+    </script>
+
+    <div ng-view></div>
+
+</body>
+
+</html>

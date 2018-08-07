@@ -918,6 +918,7 @@ div.loginpanel a.register {
   -ms-transition: all 0s;
   -o-transition: all 0s;
   transition: all 0s;
+  
 }
 div.loginpanel a.register:before {
   padding-right: 6px;
