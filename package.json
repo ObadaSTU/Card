@@ -16,9 +16,9 @@
   "author": "abu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devAbu/meanStackBtt/issues"
+    "url": "https://github.com/ObadaSTU/Card/issues"
   },
-  "homepage": "https://github.com/devAbu/meanStackBtt#readme",
+  "homepage": "https://github.com/ObadaSTU/Card#readme",
   "dependencies": {
     "angular-image-slider": "0.0.8",
     "express": "^4.16.3",
