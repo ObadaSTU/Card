@@ -1,0 +1,7 @@
+{
+    "name": "Card",
+    "description": "Card scan",
+    "repository" : "https://github.com/ObadaSTU/Card.git",
+    "logo" : "http://node-js-sample.herokuapp.com/node.svg",
+    "keywords": ["node","express","static"]
+}
