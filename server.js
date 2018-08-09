@@ -10,8 +10,8 @@ app.use(body_parser.json())
 
 app.use(express.static(__dirname + '/static'))
 
-app.get('/GetCard', function (req, res) {
-  db.tour.find(function (err, docs) {
+app.get('/Kartica', function (req, res) {
+  db.Kartica.find(function (err, docs) {
     res.json(docs)
   })
 })
