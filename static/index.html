@@ -5,12 +5,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
-
+<script src="controllers/cardGet.js"></script>
 <body ng-app="myApp">
 
     <script>
         var app = angular.module("myApp", ["ngRoute"]);
-
+        app.controller("cardGet", cardGet)
         app.config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
@@ -23,7 +23,8 @@
                     templateUrl: "feedback.html"
                 })
                 .when("/card", {
-                    templateUrl: "card.html"
+                    templateUrl: "card.html", 
+                    controller:cardGet
                 })
                 .when("/slika", {
                     templateUrl: "slika.html"

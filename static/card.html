@@ -33,7 +33,7 @@
       
             <button class="btn btn-success btn-lg mb-4">Add new card</button>
       
-  
+  <!-- 
       <div class="row">
         <div class="col-4">
             <div class="card text-white bg-primary mb-3" >
@@ -143,9 +143,24 @@
                 </div>
               </div>
         </div>
+ -->    
+ <div class="col-4">
+  <div class="card text-white bg-primary mb-3" ng-repeat="x in myWelcome">
+      <div class="card-header">{{x.Name}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{x.Description}}</h5>
+        <p class="card-text">{{x.BarCode}}</p>
+        <a href="#!slika">
+          <button class="btn btn-info btn-lg">View</button>
+        </a>
       </div>
+    </div>
+</div>
+          </div>
+
     </section>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 
 </body>
