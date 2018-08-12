@@ -31,132 +31,38 @@
 
     <section style="padding-top: 75px;">
       
-            <button class="btn btn-success btn-lg mb-4">Add new card</button>
-      
-  <!-- 
-      <div class="row">
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>           
+            <button class="btn btn-success btn-lg mb-4" ng-click="show()">Add new card</button>
+            <form>
+                <div style="margin-bottom: 20px;" ng-show="visible">
+                    <input type="text" placeholder="Card name..." class="form-control" style="width: 350px" id="name" name="name" ng-model="card.Name">
+                    <br>
+                    <input type="text" placeholder="Card description..." class="form-control" style="width: 350px" id="description" name="description" ng-model="card.Description">
+                    <br>
+                    <input type="text" placeholder="Card image..." class="form-control" style="width: 350px" id="image" name="image"
+                        ng-model="card.Image">
+                    <br>
+                    <input type="text" placeholder="Card Barcode..." class="form-control" style="width: 350px" id="barCode" name="barCode"
+                        ng-model="card.BarCode">
+                    <br>
+                    <input type="button" value="Add" class="btn btn-success" ng-click="addNewCard()">
+                    <input type="button" value="Close" class="btn btn-dark" ng-click="hide()">
                 </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-              </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3" >
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5   class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
-        <div class="col-4">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Primary card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!slika">
-                    <button class="btn btn-info btn-lg">View</button>
-                  </a>
-                </div>
-              </div>
-        </div>
- -->    
- <div class="col-4">
-  <div class="card text-white bg-primary mb-3" ng-repeat="x in myWelcome">
-      <div class="card-header">{{x.Name}}</div>
-      <div class="card-body">
-        <h5 class="card-title">{{x.Description}}</h5>
-        <p class="card-text">{{x.BarCode}}</p>
-        <a href="#!slika">
-          <button class="btn btn-info btn-lg">View</button>
-        </a>
-      </div>
-    </div>
-</div>
+            </form>
+
+ <div class="row"> 
+    <div class="col-4"  ng-repeat="x in myWelcome">
+      <div class="card text-white bg-primary mb-3">
+          <div class="card-header">{{x.Name}}</div>
+          <div class="card-body">
+            <h5 class="card-title">{{x.Description}}</h5>
+            <p class="card-text">{{x.BarCode}}</p>
+            <a href="#!slika">
+              <button class="btn btn-info btn-lg">View</button>
+            </a>
           </div>
+        </div>
+    </div>
+  </div>
 
     </section>
 
