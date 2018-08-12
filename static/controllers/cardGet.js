@@ -1,4 +1,4 @@
-function cardGet($scope, $http) {
+function cardGet($scope, $http, toastr) {
     var refesh = function () {
       $http.get('/Kartica').then(function (response) {
         $scope.myWelcome = response.data
@@ -16,6 +16,7 @@ function cardGet($scope, $http) {
         $scope.card.Description = ''
         $scope.card.Image = ''
         $scope.card.BarCode = ''
+        toastr.success('You added a new card.')
         refesh()
       })
     }

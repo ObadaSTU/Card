@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ObadaSTU/Card#readme",
   "dependencies": {
     "angular-image-slider": "0.0.8",
+    "angular-toastr": "^2.1.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "merge-descriptors": "^1.0.1",
