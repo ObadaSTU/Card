@@ -29,6 +29,51 @@ app.post('/Kartica', urlencodedParser, function (req, res, next) {
   })
 })
 
+app.delete('/deleteCard/:id', function (req, res) {
+  var id = req.params.id
+  console.log(id)
+  db.Kartica.remove({
+    _id: mongojs.ObjectId(id)
+  }, function (err, doc) {
+    console.log('removed')
+    res.json(doc)
+  })
+})
+
+
+app.get('/Kartica/:id', urlencodedParser, function (req, res) {
+  var id = req.params.id
+  console.log(id)
+  db.Kartica.findOne({
+    _id: mongojs.ObjectId(id)
+  }, function (err, doc) {
+    console.log('selected')
+    res.json(doc)
+  })
+})
+
+app.put('/Kartica/:id', function (req, res) {
+  var id = req.params.id
+  console.log(req.body)
+  db.Kartica.findAndModify({
+    query: {
+      _id: mongojs.ObjectId(id)
+    },
+    update: {
+      $set: {
+        Name: req.body.Name,
+        Description: req.body.Description,
+        Image: req.body.Image,
+        BarCode: req.body.BarCode
+      }
+    },
+    new: true
+  }, function (err, doc) {
+    console.log('updated')
+    res.json(doc)
+  })
+})
+
 app.listen(port, function () {
   console.log('Node app is running on port', port)
 });
