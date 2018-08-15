@@ -72,4 +72,13 @@ function cardGet($scope, $http, toastr) {
       })
     }
 
+    $scope.login = function () {
+      console.log('Info')
+      console.log($scope.log)
+      $http.post('/login', $scope.log).then(function (response) {
+        console.log(response)
+        toastr.success('You can now login')
+      })
+    }
+
 }

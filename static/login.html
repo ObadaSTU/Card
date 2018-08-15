@@ -11,18 +11,18 @@
 
   <div class="loginpanel" style="margin-top:350px;">
   <div class="txt">
-    <input id="user" type="text" placeholder="Username" />
+    <input id="user" type="text" placeholder="Email" ng-model="log.email" />
     <label for="user" class="entypo-user"></label>
   </div>
   <div class="txt">
-    <input id="pwd" type="password" placeholder="Password" />
+    <input id="pwd" type="password" placeholder="Password" ng-model="log.password" />
     <label for="pwd" class="entypo-lock"></label>
   </div>
   <div class="button">
     <span>
-        <a href="#!card">
-          <input type="button" value="Login" />
-        </a>
+        <!-- <a href="#!card"> -->
+          <input type="button" value="Login" ng-click="login()" />
+       <!--  </a> -->
     </span>
     <span id="reg">
       <a href="#!register"  class="entypo-user-add register"  ><span style="font-size: 20px;">Register</span></a>
