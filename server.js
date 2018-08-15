@@ -29,11 +29,37 @@ app.post('/Kartica', urlencodedParser, function (req, res, next) {
   })
 })
 
+
+app.post('/registration', urlencodedParser, function (req, res, next) {
+  var find = req.body.email
+
+    db.registration.find({
+      email: find
+    }).toArray(function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        console.log(result)
+      }
+      if (result.length > 0) {
+        return res.redirect('/#!register')
+      } else {
+        db.registration.insert(req.body, function (err, result) {
+          if (err) throw err
+          console.log('registration information inserted')
+        })
+        return res.redirect('/')
+      }
+    })
+  })
+
+  
+
 app.delete('/deleteCard/:id', function (req, res) {
   var id = req.params.id
   console.log(id)
   db.Kartica.remove({
-    _id: mongojs.ObjectId(id)
+    _id: mongojs.ObjectId(id) 
   }, function (err, doc) {
     console.log('removed')
     res.json(doc)
@@ -73,6 +99,7 @@ app.put('/Kartica/:id', function (req, res) {
     res.json(doc)
   })
 })
+
 
 app.listen(port, function () {
   console.log('Node app is running on port', port)

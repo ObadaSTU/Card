@@ -63,4 +63,13 @@ function cardGet($scope, $http, toastr) {
       })
     }
 
+    $scope.registration = function () {
+      console.log('Info')
+      console.log($scope.reg)
+      $http.post('/registration', $scope.reg).then(function (response) {
+        console.log(response)
+        toastr.success('You can now login')
+      })
+    }
+
 }
