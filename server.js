@@ -5,8 +5,6 @@ var port = process.env.PORT || 3000
 var mongojs = require('mongojs')
 var db = mongojs('localhost:27017/Card', ['Kartica'])
 
-var http = require('http')
-var url = require('url')
 
 var body_parser = require('body-parser')
 app.use(body_parser.json())
@@ -33,64 +31,8 @@ app.post('/Kartica', urlencodedParser, function (req, res, next) {
 })
 
 
-app.post('/registration', urlencodedParser, function (req, res, next) {
-  var find = req.body.email
 
-    db.registration.find({
-      email: find
-    }).toArray(function (err, result) {
-      if (err) {
-        throw err
-      } else {
-        console.log(result)
-      }
-      if (result.length > 0) {
-        //res.redirect('/#!register')
-      } else {
-        db.registration.insert(req.body, function (err, result) {
-          if (err) throw err
-          console.log('registration information inserted')
-        })
-        //res.redirect('#!card')
-      }
-    })
-  })
-
-  app.post('/login', urlencodedParser, function (req, res, next) {
-    var findMail = req.body.email
-    var findPass = req.body.password
-
-      db.registration.find({
-        email: findMail
-      }).toArray(function (err, result) {
-        if (err) {
-          throw err
-        }
-        console.log(result)
-        if (result.length == 0) {
-          return res.redirect('/')
-        } else {
-          db.registration.find({
-            password: findPass
-          }).toArray(function (err, result) {
-            if (err) {
-              throw err
-            } else {
-              console.log(result)
-            }
-            if (result.length == 0) {
-              return res.redirect('/#!login')
-            } else {
-                db.login.insert(req.body, function (err, result) {
-                  if (err) throw err
-                  console.log('login information inserted')
-                })
-              return res.redirect('/')
-            }
-          })
-        }
-      })
-    })
+ 
 
 app.delete('/deleteCard/:id', function (req, res) {
   var id = req.params.id
