@@ -37,26 +37,26 @@
                 <a class="popeye-close-modal" ng-click="hide()"></a>
                 <form name="addcard">
                   <div style="margin-bottom: 20px;" >
-                      <input type="text" placeholder="Card name..." class="form-control" style="width: 350px" id="ame" name="name" ng-model="card.Name" required>
-                      <span style="color:red" ng-show="addcard.name.$untouched ||addcard.name.$error.required">Card name is required</span>
+                      <input type="text" placeholder="Card name..." class="form-control" style="width: 350px" id="Name" name="Name" ng-model="card.Name" required>
+                      <span style="color:red" ng-show="addcard.Name.$untouched ||addcard.Name.$error.required">Card name is required</span>
                       <br>  
-                      <input type="text" placeholder="Card description..." class="form-control" style="width: 350px" id="description" name="description" ng-model="card.Description" required>
-                      <span style="color:red" ng-show="addcard.description.$untouched ||addcard.description.$error.required">Description is required</span>
+                      <input type="text" placeholder="Card description..." class="form-control" style="width: 350px" id="Description" name="Description" ng-model="card.Description" required>
+                      <span style="color:red" ng-show="addcard.Description.$untouched ||addcard.Description.$error.required">Description is required</span>
                       <br>
-                      <input type="text" placeholder="Card image..." class="form-control" style="width: 350px" id="image" name="image"
+                      <input type="text" placeholder="Card image..." class="form-control" style="width: 350px" id="Image" name="Image"
                           ng-model="card.Image" required>
-                          <span style="color:red" ng-show="addcard.image.$untouched ||addcard.image.$error.required">Image is required</span>
+                          <span style="color:red" ng-show="addcard.Image.$untouched ||addcard.Image.$error.required">Image is required</span>
                       
                           <br>
-                      <input type="text" placeholder="Card Barcode..." class="form-control" style="width: 350px" id="barCode" name="barCode"
+                      <input type="text" placeholder="Card Barcode..." class="form-control" style="width: 350px" id="BarCode" name="BarCode"
                           ng-model="card.BarCode" required>
-                          <span style="color:red" ng-show="addcard.barCode.$untouched ||addcard.barCode.$error.required">BarCode is required</span>
+                          <span style="color:red" ng-show="addcard.BarCode.$untouched || addcard.BarCode.$error.required">BarCode is required</span>
                           <br>
                       
-                      <input type="button" value="Add" class="btn btn-success" ng-click="addNewCard(); hide()" ng-disabled="addcard.name.$untouched ||addcard.name.$error.required &&  addcard.name.$dirty && addcard.description.$untouched || addcard.description.$error.required &&  addcard.description.$dirty && addcard.image.$untouched || addcard.image.$error.required &&  addcard.image.$dirty && 
-                      addcard.barCode.$untouched ||addcard.barCode.$error.required &&  addcard.barCode.$dirty">
+                      <input type="button" value="Add" class="btn btn-success" ng-click="addNewCard(); hide()" ng-disabled="addcard.$invalid" ng-required="accepted" >
+                      
                       <input type="button" value="Close" class="btn btn-dark" ng-click="hide()">
-                      <input type="button" value="Update" class="btn btn-warning" ng-click="update()">
+                      <input type="button" value="Update" class="btn btn-warning" ng-click="update(); hide()">
                   </div>
                 </form>
               </div>
