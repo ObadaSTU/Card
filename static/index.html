@@ -12,11 +12,14 @@
 <link rel="stylesheet" href="release/popeye.css" />
 
 <script src="controllers/cardGet.js"></script>
+<script src="controllers/registration-controller.js"></script>
+
 <body ng-app="myApp">
 
     <script>
         var app = angular.module("myApp", ["ngRoute", 'toastr', "pathgather.popeye"]);
         app.controller("cardGet", cardGet)
+        app.controller('registrationController', RegistrationController);
         app.config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
@@ -25,7 +28,7 @@
                 })
                 .when("/register", {
                     templateUrl: "register.html",
-                    controller: cardGet
+                    controller: "registrationController"
                 })
                 .when("/feedback", {
                     templateUrl: "feedback.html"

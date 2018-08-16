@@ -9,25 +9,39 @@
 
 <body>
 
-  <div class="loginpanel" style="margin-top:350px;">
-  <div class="txt">
-    <input id="user" type="text" placeholder="Email" ng-model="log.email" />
-    <label for="user" class="entypo-user"></label>
-  </div>
-  <div class="txt">
-    <input id="pwd" type="password" placeholder="Password" ng-model="log.password" />
-    <label for="pwd" class="entypo-lock"></label>
-  </div>
-  <div class="button">
-    <span>
-        <!-- <a href="#!card"> -->
-          <input type="button" value="Login" />
-       <!--  </a> -->
-    </span>
-    <span id="reg">
-      <a href="#!register"  class="entypo-user-add register"  ><span style="font-size: 20px;">Register</span></a>
-    </span>
-  </div>
+  <!-- <div class="login-form">
+    <form class="form-signin">
+       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+       <label for="inputEmail" class="sr-only">Email address</label>
+       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="credentials.email" required autofocus>
+       <label for="inputPassword" class="sr-only">Password</label>
+       <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="credentials.password" required>
+       <div class="checkbox mb-3">
+       </div>
+       <button class="btn btn-lg btn-warning btn-block" type="submit" ng-click="login(credentials)">Sign in</button>
+       <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+    </form> -->
+
+   <div class="loginpanel" style="margin-top:350px;">
+      <div class="txt">
+        <input id="user" type="text" placeholder="Email" ng-model="credentials.email" />
+        <label for="user" class="entypo-user"></label>
+      </div>
+      <div class="txt">
+        <input id="pwd" type="password" placeholder="Password" ng-model="credentials.password" />
+        <label for="pwd" class="entypo-lock"></label>
+      </div>
+      <div class="button">
+        <span>
+              <input type="button" value="Login" ng-click="login(credentials)"/>
+        </span>
+        <span id="reg">
+          <a href="#!register"  class="entypo-user-add register"  ><span style="font-size: 20px;">Register</span></a>
+        </span>
+  </div> 
+
+    
 </body>
 
 </html>
