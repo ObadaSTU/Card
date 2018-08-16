@@ -32,7 +32,8 @@ form input {
   margin: 0;
 }
 form input[type="text"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="email"] {
   background: #fff;
   border: 1px solid #dbdbdb;
   font-size: 1.6em;
@@ -40,7 +41,8 @@ form input[type="password"] {
   border-radius: 2px;
 }
 form input[type="text"]:focus,
-form input[type="password"]:focus {
+form input[type="password"]:focus,
+form input[type="email"]:focus {
   background: #fff;
 }
 form span {

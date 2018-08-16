@@ -14,19 +14,24 @@
 
 <body>
 
-		<form  ng-submit="add_user()">
+		<form  ng-submit="add_user()" name="form">
 				<h2>Sign Up</h2>
 					  <p>
 						  <label for="Email" class="floatLabel">Email</label>
-						  <input id="Email" name="Email" type="text" ng-model="user.email">
+						  <input id="Email" name="email" type="email" ng-model="user.email" required>
+						  <span style="color:red" ng-show="form.email.$error.required && form.email.$dirty" >Enter your email</span>
+						  <span style="color:red" ng-show=" form.email.$error.email">Enter email correctlly</span>
 					  </p>
 					  <p>
 						  <label for="username" class="floatLabel">Username</label>
-						  <input id="username" name="username" type="text" ng-model="user.userName">
+						  <input id="username" name="userName" type="text" ng-model="user.userName" required>
+						  <span style="color:red" ng-show="form.userName.$error.required && form.userName.$dirty " >Enter your user name</span>
+
 					  </p>
 					  <p>
 						  <label for="password" class="floatLabel">Password</label>
-						  <input id="password" name="password" type="password" ng-model="user.password">
+						  <input id="password" name="password" type="password" ng-model="user.password" required>
+						  <span style="color:red" ng-show="form.password.$error.required && form.password.$dirty " >Enter password</span>
 					  </p>
 						  <p>
 							  <input type="submit" value="Create My Account" id="submit">
