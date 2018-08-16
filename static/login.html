@@ -22,15 +22,19 @@
        <button class="btn btn-lg btn-warning btn-block" type="submit" ng-click="login(credentials)">Sign in</button>
        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     </form> -->
-
+<form name="FormLogin">
    <div class="loginpanel" style="margin-top:350px;">
       <div class="txt">
-        <input id="user" type="text" placeholder="Email" ng-model="credentials.email" />
+        <input id="user" type="email" placeholder="Email" ng-model="credentials.email" name="email" required/>
         <label for="user" class="entypo-user"></label>
+        <span style="color:red" ng-show="FormLogin.email.$error.required && FormLogin.email.$dirty" >Enter your email</span>
+        <span style="color:red" ng-show=" FormLogin.email.$error.email">Enter email correctlly</span> 
       </div>
       <div class="txt">
-        <input id="pwd" type="password" placeholder="Password" ng-model="credentials.password" />
+        <input id="pwd" type="password" placeholder="Password" ng-model="credentials.password" name="password" required/>
         <label for="pwd" class="entypo-lock"></label>
+        <span style="color:red" ng-show="FormLogin.password.$error.required && FormLogin.password.$dirty " >Enter password</span>
+
       </div>
       <div class="button">
         <span>
@@ -40,7 +44,7 @@
           <a href="#!register"  class="entypo-user-add register"  ><span style="font-size: 20px;">Register</span></a>
         </span>
   </div> 
-
+</form>
     
 </body>
 
