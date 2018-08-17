@@ -25,8 +25,12 @@ function cardGet($scope, $http, toastr, $location) {
               localStorage.setItem('user',response.data.token)
               localStorage.setItem('type', response.data.type)
               toastr.success('You are successfully logged in!', 'Login Success!');
-              $location.url('/card');
-          }
+              if(localStorage.getItem('type') == "user" ){
+                $location.url('/card');
+            } else if(localStorage.getItem('type') == "admin"){
+                $location.url('/admin');
+            }
+      }
           else if(response.data.user == false){
               toastr.error('Login Error');
           }
