@@ -22,12 +22,12 @@ var urlencodedParser = bodyparser.urlencoded({
   extended: false
 })// to support URL-encoded bodies
 
-app.use('/Card/',function(request,response,next){
+app.use('/user/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
     if (error) {
       response.status(401).send('Unauthorized access');    
     } else {
-      db.collection("users").findOne({'_id': new MongoId(decoded._id)}, function(error, user) {
+      db.collection("users").findOne({'_id': new mongojs.ObjectId(decoded._id)}, function(error, user) {
         if (error){
           throw error;
         }else{
@@ -48,7 +48,7 @@ app.use('/admin/',function(request,response,next){
       response.status(401).send('Unauthorized access'); 
       console.log(error);   
     } else {
-      db.collection("users").findOne({'_id': new MongoId(decoded._id)}, function(error, users) {
+      db.collection("users").findOne({'_id': new mongojs.ObjectId(decoded._id)}, function(error, users) {
         if (error){
           throw error;
         }else{
@@ -139,7 +139,7 @@ app.post('/register', function(req, res, next) {
 });
 
 
-app.get('/Kartica', function (req, res) {
+app.get('/user/Kartica', function (req, res) {
   db.Kartica.find(function (err, docs) {
     res.json(docs)
   })

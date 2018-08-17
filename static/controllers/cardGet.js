@@ -1,9 +1,18 @@
 function cardGet($scope, $http, toastr, $location) {
+    var config = {headers:  {
+        'Authorization': 'Basic TmljayBDZXJtaW5hcmE6cGFzc3dvcmQ=',
+        'Accept': 'application/json;odata=verbose',
+        "JWT" : localStorage.getItem('user')
+        }
+     };
+
     var refesh = function () {
-      $http.get('/Kartica').then(function (response) {
+      $http.get('/user/Kartica',config).then(function (response) {
         $scope.myWelcome = response.data
       })
     }
+
+    
 
     $scope.check_login = function(){
       if(localStorage.getItem('user')){
