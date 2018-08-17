@@ -87,6 +87,7 @@ app.post('/login', function(req, res) {
                       console.log("Admin authentication passed.");
                   }
                   else if(users.type == "user"){
+                    users.password= null;
                       var token = jwt.sign(users, jwt_secret, {
                           expiresIn: 60*60*24
                       });
