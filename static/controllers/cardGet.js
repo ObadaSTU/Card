@@ -6,12 +6,15 @@ function cardGet($scope, $http, toastr, $location) {
         }
      };
 
+     console.log (localStorage.getItem('user'))
+
+     console.log (localStorage.getItem('type'))
     var refesh = function () {
-      $http.get('/user/Kartica',config).then(function (response) {
+      $http.get('/user/Kartica' ,config).then(function (response) {
         $scope.myWelcome = response.data
+        console.log(id)
       })
     }
-
     
 
     $scope.check_login = function(){
@@ -36,6 +39,7 @@ function cardGet($scope, $http, toastr, $location) {
               toastr.success('You are successfully logged in!', 'Login Success!');
               if(localStorage.getItem('type') == "user" ){
                 $location.url('/card');
+                refesh();
             } else if(localStorage.getItem('type') == "admin"){
                 $location.url('/admin');
             }
@@ -48,12 +52,12 @@ function cardGet($scope, $http, toastr, $location) {
       }
   }
   
-    refesh()
+    //refesh()
   
     $scope.addNewCard = function () {
       console.log('Card added')
       console.log($scope.card)
-      $http.post('/Kartica', $scope.card).then(function (response) {
+      $http.post('/user/Kartica', $scope.card, config).then(function (response) {
         console.log(response)
         $scope.card.Name = ''
         $scope.card.Description = ''
@@ -76,7 +80,7 @@ function cardGet($scope, $http, toastr, $location) {
     $scope.deleteCard = function (id) {
       console.log('delete card')
       console.log(id)
-      $http.delete('/deleteCard/' + id).then(function (response) {
+      $http.delete('/user/deleteCard/' + id, config).then(function (response) {
         console.log('removed')
         toastr.error("Card removed")
         refesh()
@@ -86,7 +90,7 @@ function cardGet($scope, $http, toastr, $location) {
     $scope.edit = function (id) {
       console.log('select card')
       console.log(id)
-      $http.get('/Kartica/' + id).then(function (response) {
+      $http.get('/user/Kartica/' + id, config).then(function (response) {
         console.log('selected')
         $scope.card = response.data
       })
@@ -95,7 +99,7 @@ function cardGet($scope, $http, toastr, $location) {
     $scope.update = function () {
       console.log('update card')
       console.log($scope.card._id)
-      $http.put('Kartica/' + $scope.card._id, $scope.card).then(function (response) {
+      $http.put('/user/Kartica/' + $scope.card._id, $scope.card, config).then(function (response) {
         console.log('update')
         $scope.card.Name = ''
         $scope.card.Description = ''
@@ -106,5 +110,9 @@ function cardGet($scope, $http, toastr, $location) {
       })
     }
 
+    if(localStorage.getItem('type') == "user"){
+        console.log('juhu')
+          refesh()
+      }
 
 }

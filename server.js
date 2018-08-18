@@ -27,17 +27,9 @@ app.use('/user/',function(request,response,next){
     if (error) {
       response.status(401).send('Unauthorized access');    
     } else {
-      db.collection("users").findOne({'_id': new mongojs.ObjectId(decoded._id)}, function(error, user) {
-        if (error){
-          throw error;
-        }else{
-          if(user){
-            next();
-          }else{
-            response.status(401).send('Credentials are wrong.');
-          }
-        }
-      });
+      console.log(decoded);
+      request.user = decoded;
+      next();
     }
   });  
 })
@@ -66,7 +58,7 @@ app.use('/admin/',function(request,response,next){
 app.post('/login', function(req, res) {
   var user = req.body;
   db.collection('users').findOne({
-      'email': user.email,
+      'email': user.email
   }, function(error, users) {
       if (error) {
           throw error;
@@ -139,26 +131,25 @@ app.post('/register', function(req, res, next) {
 });
 
 
+
+
 app.get('/user/Kartica', function (req, res) {
-  db.Kartica.find(function (err, docs) {
+  console.log(req);
+  db.Kartica.find({user_id : req.user._id}, function (err, docs) {
+          console.log(docs)
     res.json(docs)
   })
 })
-
-app.post('/Kartica', urlencodedParser, function (req, res, next) {
+app.post('/user/Kartica', urlencodedParser, function (req, res, next) {
   console.log(req.body)
-
+  req.body.user_id = req.user._id;
   db.Kartica.insert(req.body, function (err, docs) {
     console.log('Card date inserted successfully')
     res.json(docs)
   })
 })
 
-
-
- 
-
-app.delete('/deleteCard/:id', function (req, res) {
+app.delete('/user/deleteCard/:id', function (req, res) {
   var id = req.params.id
   console.log(id)
   db.Kartica.remove({
@@ -170,7 +161,7 @@ app.delete('/deleteCard/:id', function (req, res) {
 })
 
 
-app.get('/Kartica/:id', urlencodedParser, function (req, res) {
+app.get('/user/Kartica/:id', urlencodedParser, function (req, res) {
   var id = req.params.id
   console.log(id)
   db.Kartica.findOne({
@@ -181,7 +172,7 @@ app.get('/Kartica/:id', urlencodedParser, function (req, res) {
   })
 })
 
-app.put('/Kartica/:id', function (req, res) {
+app.put('/user/Kartica/:id', function (req, res) {
   var id = req.params.id
   console.log(req.body)
   db.Kartica.findAndModify({
