@@ -7,9 +7,11 @@ const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
 var mongojs = require('mongojs')
 app.use(bodyparser.json())
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var db = mongojs('localhost:27017/Card', ['Kartica'])
+var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/Card', ['Kartica'])
+
 var port = process.env.PORT || 3000
 
 app.use(express.static(__dirname + '/static'));
@@ -64,7 +66,7 @@ app.post('/login', function(req, res) {
           throw error;
       } 
       if(users) {
-          bcrypt.compare(user.password, users.password, function(err, resp){
+        //  bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
                   if(users.type == "admin"){
                       var token = jwt.sign(users, jwt_admin, {
@@ -97,7 +99,7 @@ app.post('/login', function(req, res) {
                       user : false
                   })
               }
-          })
+          //})
       }
   });
 });
@@ -108,7 +110,7 @@ app.post('/register', function(req, res, next) {
   req.body.password_confirm = null;
   var user = req.body;
   var find = req.body.email;
-  bcrypt.hash(user.password, 10, function(err, hash) {
+  //bcrypt.hash(user.password, 10, function(err, hash) {
       user.password = hash;
       db.collection('users').find({
         email : find
@@ -127,7 +129,7 @@ app.post('/register', function(req, res, next) {
           })
         }
   })
-})
+//})
 });
 
 
