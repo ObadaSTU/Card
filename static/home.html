@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Card</title>
+  <link rel="stylesheet" href="css/home.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <!--TODO: combe prepise i povjeriti -->
+  <section id="jumbotron" class="jumbotron jumbotron-fluid text-white d-flex justify-content-center align-items-center">
+    <div class="container text-center">
+      <h1 class="display-1 text-primary text-uppercase">Online Card</h1>
+      <p class="display-4 d-none d-sm-block text-warning">Keep your card on your phone!!!</p>
+      <div class="row">
+        <div class="col-6">
+          <h3 class="text-primary">Number of users:</h3>
+          <div class="users text-dark">
+            <h3>{{users}}</h3>
+          </div>
+        </div>
+        <div class="col-6">
+          <h3 class="text-primary">Number of cards:</h3>
+          <div class="cards text-dark">
+            <h3>{{cards}}</h3>
+          </div>
+        </div>
+      </div>
+      <a href="#!login" class="btn btn-lg btn-primary ml-5">
+               Login</a>
+      <a href="#!register" class="btn btn-lg btn-secondary">
+               Create an account</a>
+    </div>
+  </section>
+
+</body>
+
+</html>

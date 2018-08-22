@@ -196,6 +196,19 @@ app.put('/user/Kartica/:id', function (req, res) {
   })
 })
 
+app.get('/users', urlencodedParser, function(req, res, next) { 
+  db.users.count(function(err, count){
+    console.log(count)
+    res.json(count)
+  })
+})
+
+app.get('/cards', urlencodedParser, function(req, res, next){
+  db.Kartica.count(function(err, count){
+    console.log(count)
+    res.json(count)
+  })
+})
 
 app.listen(port, function () {
   console.log('Node app is running on port', port)

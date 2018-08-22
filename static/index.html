@@ -23,6 +23,10 @@
         app.config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
+                    templateUrl: "home.html",
+                    controller: cardGet
+                })
+                .when("/login", {
                     templateUrl: "login.html",
                     controller: cardGet
                 })

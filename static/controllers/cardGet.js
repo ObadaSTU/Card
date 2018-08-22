@@ -110,6 +110,18 @@ function cardGet($scope, $http, toastr, $location) {
       })
     }
 
+    var users = function(){
+        $http.get('/users').then(function(response) {
+            $scope.users = response.data - 1 
+        })
+    }
+
+    var cards = function() {
+        $http.get('/cards').then(function(response){
+            $scope.cards = response.data
+        })
+    }
+
     if(localStorage.getItem('type') == "user"){
         console.log('juhu')
           refesh()
