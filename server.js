@@ -210,6 +210,35 @@ app.get('/cards', urlencodedParser, function(req, res, next){
   })
 })
 
+// TODO: provjeriti feedback slanje
+
+app.post('/feedback', urlencodedParser, function(req, res, next){
+  console.log(req.body);
+  db.feedback.insert(req.body, function (err, docs) { 
+    console.log('feedback inserted')
+    res.json(docs)
+  })
+})
+
+// TODO: provjeriti citanje feedback
+
+app.get('/admin/feedback', function (req, res){
+  console.log(req);
+  db.feedback.find(function(err, docs){
+    console.log(docs)
+    res.json(docs)
+  })
+})
+
+// TODO: search testirat
+
+//TODO: testirat citanje broja korisnika i kartica
+
+//TODO: testirat kako se input:file/image radi sa bazom (kako se sacuva i cita) 
+
+//TODO: uradit stranicu gdje ce biti prikazane slike...ili popup
+
+
 app.listen(port, function () {
   console.log('Node app is running on port', port)
 });

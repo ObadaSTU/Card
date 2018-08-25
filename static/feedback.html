@@ -17,29 +17,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/-->
     <h1 class="agile_head text-center">Feedback Form</h1>
     <div class="w3layouts_main wrap">
 	  <h3>Please help us to serve you better by taking a couple of minutes. </h3>
-	    <form action="#" method="post" class="agile_form">
+	    <form class= "agile_form">
 		  <h2>How satisfied were you with our Product/Service?</h2>
 			 <ul class="agile_info_select">
-				 <li><input type="radio" name="view" id="excellent"> 
+				 <li><input type="radio" name="view" id="excellent" value= "excellent" ng-model= "feedback.option"> 
 				 	  <label for="excellent">excellent</label>
 				      <div class="check w3"></div>
 				 </li>
-				 <li><input type="radio" name="view" id="good" checked="checked"> 
+				 <li><input type="radio" name="view" id="good" checked="checked" value="good" ng-model="feedback.option"> 
 					  <label for="good"> good</label>
 				      <div class="check w3ls"></div>
 				 </li>
-				 <li><input type="radio" name="view" id="neutral"> 
+				 <li><input type="radio" name="view" id="neutral" value="neutral" ng-model= "feedback.option"> 
 					 <label for="neutral">neutral</label>
 				     <div class="check wthree"></div>
 				 </li>
-				 <li><input type="radio" name="view" id="poor"> 
+				 <li><input type="radio" name="view" id="poor" values= "poor" ng-model = "feedback.option"> 
 					  <label for="poor">poor</label>
 				      <div class="check w3_agileits"></div>
 				 </li>
 			 </ul>	  
 			<h2>If you have specific feedback, please write to us...</h2>
-			<textarea placeholder="Additional comments" class="w3l_summary"  required=""></textarea>
-			<input type="submit" value="send" class="agileinfo" />
+			<textarea placeholder="Additional comments" class="w3l_summary"  required="" ng-model= "feedback.text"></textarea>
+			<input type="submit" value="send" class="agileinfo" ng-click= "sendFeedback()" />
 	  </form>
 	</div>
 	<div class="agileits_copyright text-center">

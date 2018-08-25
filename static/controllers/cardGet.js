@@ -15,6 +15,12 @@ function cardGet($scope, $http, toastr, $location) {
         console.log(id)
       })
     }
+
+    var refreshFeedback = function(){
+        $http.get('/admin/feedbak' , config).then(function (response){
+            $scope.myWelcome = response.data
+        })
+    }
     
 
     $scope.check_login = function(){
@@ -125,6 +131,19 @@ function cardGet($scope, $http, toastr, $location) {
     if(localStorage.getItem('type') == "user"){
         console.log('juhu')
           refesh()
+      }else if(localStorage.getItem('type') == 'admin'){
+          console.log("hujuu")
+          refreshFeedback()
       }
 
+
+      $scope.sendFeedback = function(){
+          console.log('Feedback sent');
+          console.log($scope.feedback);
+          $http.post('/feedback', $scope.feedback).then(function (response){
+              console.log(response)
+              $scope.feedback.text = "";
+              toastr.success("Thanks!!!")
+          })
+      }
 }

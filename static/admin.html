@@ -19,13 +19,14 @@
               </nav>
 
     <div class="row">
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-3" ng-repeat = "c in myWelcome">
             <div class="card" style="margin-left: 5%; margin-right: 5%">
-                <div class="card-header">
+               <!--  <div class="card-header">
                     User name
                 </div>
-                <div class="card-body">
-                    User feedback
+ -->                <div class="card-body">
+                        {{x.text}}
+                    </div>
                 </div>
             </div>
         </div>
