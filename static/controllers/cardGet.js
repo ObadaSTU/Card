@@ -82,6 +82,28 @@ function cardGet($scope, $http, toastr, $location) {
         $scope.visible = true;
         $scope.visible = $scope.visible = false;
     }
+    $scope.showImage = function (id) {
+        console.log('View image')
+        console.log(id)
+        $http.get('/user/Kartica/' + id, config).then(function (response) {
+          console.log('selected')
+          
+          $scope.test = response.data
+          console.log($scope.test.Image)
+          $scope.image = false;
+          $scope.image = $scope.image = true;
+        })
+      }
+
+
+   /*  $scope.showImage = function () {
+        $scope.image = false;
+        $scope.image = $scope.image = true;
+    } */
+    $scope.closeImage = function () {
+        $scope.image = true;
+        $scope.image = $scope.image = false;
+    }
 
     $scope.deleteCard = function (id) {
       console.log('delete card')

@@ -227,8 +227,6 @@ app.get('/admin/feedback', function (req, res){
   })
 })
 
-//TODO: uradit stranicu gdje ce biti prikazane slike...ili popup
-
 
 app.listen(port, function () {
   console.log('Node app is running on port', port)
