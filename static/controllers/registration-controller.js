@@ -9,7 +9,7 @@ function RegistrationController($scope, $http, toastr, $location){
         } else{
         $scope.user = null;
         toastr.success("You are successfully registered! Please Login!", "Registration Successfull!");
-        $location.url('/');
+        $location.url('/login');
         }
       });
     }

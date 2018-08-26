@@ -10,15 +10,15 @@ function cardGet($scope, $http, toastr, $location) {
 
      console.log (localStorage.getItem('type'))
     var refesh = function () {
-      $http.get('/user/Kartica' ,config).then(function (response) {
+      $http.get('/user/Kartica', config ).then(function (response) {
         $scope.myWelcome = response.data
         console.log(id)
       })
     }
 
     var refreshFeedback = function(){
-        $http.get('/admin/feedbak' , config).then(function (response){
-            $scope.myWelcome = response.data
+        $http.get('/admin/feedback', config ).then(function (response){
+            $scope.feed = response.data
         })
     }
     
@@ -118,15 +118,20 @@ function cardGet($scope, $http, toastr, $location) {
 
     var users = function(){
         $http.get('/users').then(function(response) {
-            $scope.users = response.data - 1 
+            $scope.users = response.data - 1 ;
+            console.log($scope.users)
         })
     }
 
     var cards = function() {
         $http.get('/cards').then(function(response){
-            $scope.cards = response.data
+            $scope.cards = response.data;
+            console.log($scope.cards)
         })
     }
+
+    users()
+    cards()
 
     if(localStorage.getItem('type') == "user"){
         console.log('juhu')
@@ -146,4 +151,9 @@ function cardGet($scope, $http, toastr, $location) {
               toastr.success("Thanks!!!")
           })
       }
+
+      $scope.logout = function(){
+        localStorage.clear();
+        toastr.info("Successfully logged out!", "Logged Out!");
+    }
 }

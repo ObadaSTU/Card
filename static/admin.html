@@ -10,76 +10,23 @@
 </head>
 <body style="padding-top: 75px">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                 
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Logout</a>
+                      <!-- <a class="nav-link" href="#">Logout</a> -->
+                      <span ng-if="check_admin()" style="list-style:none"><a href="#" class="button style" data-hover="Logout"  ng-click="logout()">Logout</a></span>
                     </li>
               </nav>
-
     <div class="row">
-        <div class="col-12 mb-3" ng-repeat = "c in myWelcome">
+        <div class="col-12 mb-3" ng-repeat = "x in feed">
             <div class="card" style="margin-left: 5%; margin-right: 5%">
-               <!--  <div class="card-header">
-                    User name
-                </div>
- -->                <div class="card-body">
+               <div class="card-body">
                         {{x.text}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-3">
-                <div class="card" style="margin-left: 5%; margin-right: 5%">
-                    <div class="card-header">
-                        User name
-                    </div>
-                    <div class="card-body">
-                        User feedback
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 mb-3">
-                <div class="card" style="margin-left: 5%; margin-right: 5%">
-                    <div class="card-header">
-                        User name
-                    </div>
-                    <div class="card-body">
-                        User feedback
-                    </div>
-                </div>
-            </div>
-                <div class="col-12 mb-3">
-                    <div class="card" style="margin-left: 5%; margin-right: 5%">
-                        <div class="card-header">
-                            User name
-                        </div>
-                        <div class="card-body">
-                            User feedback
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mb-3">
-                    <div class="card" style="margin-left: 5%; margin-right: 5%">
-                        <div class="card-header">
-                            User name
-                        </div>
-                        <div class="card-body">
-                            User feedback
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mb-3">
-                    <div class="card" style="margin-left: 5%; margin-right: 5%">
-                        <div class="card-header">
-                            User name
-                        </div>
-                        <div class="card-body">
-                            User feedback
-                        </div>
-                    </div>
-                </div>
     </div>
 
 

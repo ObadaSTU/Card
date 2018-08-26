@@ -7,7 +7,7 @@ const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
 var mongojs = require('mongojs')
 app.use(bodyparser.json())
-//var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var db = mongojs('localhost:27017/Card', ['Kartica'])
 var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/Card', ['Kartica'])
@@ -36,25 +36,26 @@ app.use('/user/',function(request,response,next){
   });  
 })
 
-app.use('/admin/',function(request,response,next){
-  jwt.verify(request.get('JWT'), jwt_admin, function(error, decoded) {     
+app.use('/admin/', function(request, response, next) {
+  jwt.verify(request.get('JWT'), jwt_admin, function(error, decoded) {
     if (error) {
-      response.status(401).send('Unauthorized access'); 
-      console.log(error);   
+      response.status(401).send('Unauthorized access');
     } else {
-      db.collection("users").findOne({'_id': new mongojs.ObjectId(decoded._id)}, function(error, users) {
-        if (error){
+      db.users.findOne({
+        '_id': new mongojs.ObjectId(decoded._id)
+      }, function(error, user) {
+        if (error) {
           throw error;
-        }else{
-          if(users){
+        } else {
+          if (user) {
             next();
-          }else{
+          } else {
             response.status(401).send('Credentials are wrong.');
           }
         }
       });
     }
-  });  
+  });
 })
 
 app.post('/login', function(req, res) {
@@ -66,7 +67,7 @@ app.post('/login', function(req, res) {
           throw error;
       } 
       if(users) {
-        //  bcrypt.compare(user.password, users.password, function(err, resp){
+        bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
                   if(users.type == "admin"){
                       var token = jwt.sign(users, jwt_admin, {
@@ -99,7 +100,7 @@ app.post('/login', function(req, res) {
                       user : false
                   })
               }
-          //})
+          })
       }
   });
 });
@@ -110,7 +111,7 @@ app.post('/register', function(req, res, next) {
   req.body.password_confirm = null;
   var user = req.body;
   var find = req.body.email;
-  //bcrypt.hash(user.password, 10, function(err, hash) {
+  bcrypt.hash(user.password, 10, function(err, hash) {
       user.password = hash;
       db.collection('users').find({
         email : find
@@ -129,7 +130,7 @@ app.post('/register', function(req, res, next) {
           })
         }
   })
-//})
+})
 });
 
 
@@ -196,8 +197,8 @@ app.put('/user/Kartica/:id', function (req, res) {
   })
 })
 
-app.get('/users', urlencodedParser, function(req, res, next) { 
-  db.users.count(function(err, count){
+app.get('/users', urlencodedParser, function(req, res, next) {
+  db.users.count(function(err, count) {
     console.log(count)
     res.json(count)
   })
@@ -210,8 +211,6 @@ app.get('/cards', urlencodedParser, function(req, res, next){
   })
 })
 
-// TODO: provjeriti feedback slanje
-
 app.post('/feedback', urlencodedParser, function(req, res, next){
   console.log(req.body);
   db.feedback.insert(req.body, function (err, docs) { 
@@ -220,8 +219,6 @@ app.post('/feedback', urlencodedParser, function(req, res, next){
   })
 })
 
-// TODO: provjeriti citanje feedback
-
 app.get('/admin/feedback', function (req, res){
   console.log(req);
   db.feedback.find(function(err, docs){
@@ -229,12 +226,6 @@ app.get('/admin/feedback', function (req, res){
     res.json(docs)
   })
 })
-
-// TODO: search testirat
-
-//TODO: testirat citanje broja korisnika i kartica
-
-//TODO: testirat kako se input:file/image radi sa bazom (kako se sacuva i cita) 
 
 //TODO: uradit stranicu gdje ce biti prikazane slike...ili popup
 

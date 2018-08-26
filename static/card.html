@@ -12,10 +12,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="search">
-           <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-          </form>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" ng-model="search">
+           <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+          </form> -->
           <ul class="navbar-nav mr-auto ml-4">
               <li class="nav-item">
                       <a class="nav-link" href="#!feedback">Feedback</a>
@@ -24,7 +24,8 @@
         <ul class='navbar-nav ml-auto'>
           <li class='nav-item'>
           <span class='navLinks'><a href="#/!">
-              <i class='fas fa-sign-in-alt mr-2' ></i>Logout</a>
+              <!-- <i class='fas fa-sign-in-alt mr-2' ></i>Logout</a> -->
+              <span ng-if="check_user()" style="list-style:none"><a href="#" class="button style" data-hover="Logout"  ng-click="logout()">Logout</a></span>
             </span>
           </li>
         </ul>
@@ -44,9 +45,10 @@
                       <input type="text" placeholder="Card description..." class="form-control" style="width: 350px" id="Description" name="Description" ng-model="card.Description" required>
                       <span style="color:red" ng-show="addcard.Description.$untouched ||addcard.Description.$error.required">Description is required</span>
                       <br>
-                      <label for= "Image" class = "mr-5">Card Image</label>
-                      <input type = "file" accept="image/x-png , image/gif, imgae/jpeg" style= "width: 350px" id= "Image" name= "Image" ng-model="card.Image" >
-                     <!--  <span style= "color: red" ng-show="addcard.Image.$untouched || addcard.Image.$error.required">Image is required</span>  -->
+                      <!-- <label for= "Image" class = "mr-5">Card Image</label>
+                      <input type = "file" accept="image/x-png , image/gif, imgae/jpeg" style= "width: 350px" id= "Image" name= "Image" ng-model="card.Image" > -->
+                      <input type="text" placeholder="Card Image (link)..." class="form-control" style="width: 350px" id="Image" name="Image" ng-model="card.Image" required>
+                      <span style= "color: red" ng-show="addcard.Image.$untouched || addcard.Image.$error.required">Image is required</span> 
                           <br>
                       <input type="text" placeholder="Card Barcode..." class="form-control" style="width: 350px" id="BarCode" name="BarCode"
                           ng-model="card.BarCode" required>
@@ -64,7 +66,7 @@
             
 
  <div class="row"> 
-    <div class="col-xs-12 col-md-6 col-lg-3"   ng-repeat="x in myWelcome | search">
+    <div class="col-xs-12 col-md-6 col-lg-3"   ng-repeat="x in myWelcome">
       <div class="card text-white bg-primary mb-3">
           <div class="card-header">{{x.Name}}</div>
           <div class="card-body">
