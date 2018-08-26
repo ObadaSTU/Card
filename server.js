@@ -71,6 +71,9 @@ app.post('/login', function(req, res) {
       if(users) {
         bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
+                db.collection('login').insert(user, function(err, data) {
+                    if (err) return console.log(err)
+                })
                   if(users.type == "admin"){
                       var token = jwt.sign(users, jwt_admin, {
                           expiresIn: 60*60*24
@@ -84,6 +87,7 @@ app.post('/login', function(req, res) {
                       console.log("Admin authentication passed.");
                   }
                   else if(users.type == "user"){
+
                     users.password= null;
                       var token = jwt.sign(users, jwt_secret, {
                           expiresIn: 60*60*24
@@ -95,6 +99,7 @@ app.post('/login', function(req, res) {
                           type: "user"
                       })
                       console.log("Authentication passed.");
+
                   }
               }
               else {
@@ -110,10 +115,10 @@ app.post('/login', function(req, res) {
 app.post('/register', function(req, res, next) {
   req.body.type = "user";
   req.body._id = null;
-  req.body.password_confirm = null;
+  //req.body.password_confirm = null;
   var user = req.body;
   var find = req.body.email;
-  bcrypt.hash(user.password, salt, null function(err, hash) {
+  bcrypt.hash(user.password, salt, null, function(err, hash) {
       user.password = hash;
       db.collection('users').find({
         email : find
