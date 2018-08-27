@@ -7,35 +7,33 @@ const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
 var mongojs = require('mongojs')
 app.use(bodyparser.json())
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var db = mongojs('localhost:27017/Card', ['Kartica'])
 var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/Card', ['Kartica'])
 
 var port = process.env.PORT || 3000
 
-var salt = bcrypt.genSaltSync(10);
-
 app.use(express.static(__dirname + '/static'));
 app.use(express.json()); // to support JSON-encoded bodies
 app.use(bodyparser.json());
 app.use(express.urlencoded({
     extended: true
-}));
+})); 
 var urlencodedParser = bodyparser.urlencoded({
   extended: false
 })// to support URL-encoded bodies
 
 app.use('/user/',function(request,response,next){
-  jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {
+  jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
     if (error) {
-      response.status(401).send('Unauthorized access');
+      response.status(401).send('Unauthorized access');    
     } else {
       console.log(decoded);
       request.user = decoded;
       next();
     }
-  });
+  });  
 })
 
 app.use('/admin/', function(request, response, next) {
@@ -67,7 +65,7 @@ app.post('/login', function(req, res) {
   }, function(error, users) {
       if (error) {
           throw error;
-      }
+      } 
       if(users) {
         bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
@@ -113,7 +111,7 @@ app.post('/register', function(req, res, next) {
   req.body.password_confirm = null;
   var user = req.body;
   var find = req.body.email;
-  bcrypt.hash(user.password, salt, null function(err, hash) {
+  bcrypt.hash(user.password, 10, function(err, hash) {
       user.password = hash;
       db.collection('users').find({
         email : find
@@ -158,7 +156,7 @@ app.delete('/user/deleteCard/:id', function (req, res) {
   var id = req.params.id
   console.log(id)
   db.Kartica.remove({
-    _id: mongojs.ObjectId(id)
+    _id: mongojs.ObjectId(id) 
   }, function (err, doc) {
     console.log('removed')
     res.json(doc)
@@ -215,7 +213,7 @@ app.get('/cards', urlencodedParser, function(req, res, next){
 
 app.post('/feedback', urlencodedParser, function(req, res, next){
   console.log(req.body);
-  db.feedback.insert(req.body, function (err, docs) {
+  db.feedback.insert(req.body, function (err, docs) { 
     console.log('feedback inserted')
     res.json(docs)
   })
