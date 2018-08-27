@@ -12,7 +12,7 @@ var jwt = require('jsonwebtoken');
 //var db = mongojs('localhost:27017/Card', ['Kartica'])
 //var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/Card', ['Kartica'])
 var db = mongojs(process.env.MONGOLAB_URI || 'mongodb://ObadaSTU:refko..10@ds125402.mlab.com:25402/kartica')
-var port = process.env.PORT || 5050
+var port = process.env.PORT || 3000
 
 var salt = bcrypt.genSaltSync(10);
 
