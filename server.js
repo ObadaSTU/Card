@@ -118,15 +118,9 @@ app.post('/register', function(req, res, next) {
   //req.body.password_confirm = null;
   var user = req.body;
   var find = req.body.email;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  bcrypt.hash(user.password, 10, function(err, hash) {
-=======
+
+  
   bcrypt.hash(user.password, salt, null, function(err, hash) {
->>>>>>> parent of 8b06cd1... Revert "..."
-=======
-  bcrypt.hash(user.password, salt, null function(err, hash) {
->>>>>>> parent of 630a2b0... Revert "heroku"
       user.password = hash;
       db.collection('users').find({
         email : find
