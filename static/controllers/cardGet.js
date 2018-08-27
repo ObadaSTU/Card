@@ -12,7 +12,8 @@ function cardGet($scope, $http, toastr, $location) {
     var refesh = function () {
       $http.get('/user/Kartica', config ).then(function (response) {
         $scope.myWelcome = response.data
-        console.log(id)
+        $scope.xxx =parseInt(localStorage.getItem('count'))
+        //console.log(id)
       })
     }
 
@@ -46,6 +47,7 @@ function cardGet($scope, $http, toastr, $location) {
               if(localStorage.getItem('type') == "user" ){
                 $location.url('/card');
                 refesh();
+                clicks()
             } else if(localStorage.getItem('type') == "admin"){
                 $location.url('/admin');
             }
@@ -138,6 +140,32 @@ function cardGet($scope, $http, toastr, $location) {
       })
     }
 
+    $scope.count = 0
+    $scope.clicks = function(id){
+        console.log(id)
+        console.log('Clicked')
+        
+        console.log($scope.count)
+        $scope.id = id
+
+        $scope.count = $scope.count + 1;
+        console.log($scope.count)
+        if(localStorage.getItem('count') == ''){
+           parseInt( localStorage.setItem('count', $scope.count ))
+        }else {
+            $scope.xxx =parseInt(localStorage.getItem('count'))
+            localStorage.setItem('count', $scope.xxx++ )
+            console.log($scope.xxx)
+            parseInt( localStorage.setItem('count', $scope.xxx ))
+        }
+        
+        
+        console.log("dsasad" +$scope.test)
+       /*  $http.post('/card', $scope.count).then(function (response){
+          console.log(response)
+        }) */
+    }
+
     var users = function(){
         $http.get('/users').then(function(response) {
             $scope.users = response.data - 1 ;
@@ -157,7 +185,7 @@ function cardGet($scope, $http, toastr, $location) {
 
     if(localStorage.getItem('type') == "user"){
         console.log('juhu')
-          refesh()
+          refesh();
       }else if(localStorage.getItem('type') == 'admin'){
           console.log("hujuu")
           refreshFeedback()
