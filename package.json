@@ -28,7 +28,6 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "merge-descriptors": "^1.0.1",
-    "mongojs": "^2.6.0",
-    "nodemon": "^1.18.3"
+    "mongojs": "^2.6.0"
   }
 }
